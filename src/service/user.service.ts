@@ -64,5 +64,41 @@ class UserService {
     const result = await connection.execute(statement, [username, userId]);
     return result[0];
   }
+  
+  async delVisitLog() {
+    const statement = `
+      DELETE FROM visit_logs
+      WHERE createdAt < NOW() - INTERVAL 7 DAY;
+    `
+    const result = await connection.execute(statement);
+    return result[0];
+  }
+
+  async getVisitLog(userId: String) {
+    const statement = `
+    SELECT
+      log.count count
+    FROM visit_logs as log WHERE userId = ?
+    AND DATE(log.createdAt) = CURDATE();
+    `
+    const result = await connection.execute(statement, [userId])
+    return result[0];
+  }
+
+  async setVisitLog(userId: String) {
+    const statement = `
+      INSERT INTO visit_logs ( userId, count) VALUES (?, 1);
+    `
+    const result = await connection.execute(statement, [userId]);
+    return result[0];
+  }
+
+  async updateVisitLog(userId: String, count: Number) {
+    const statement = `
+        UPDATE visit_logs as log SET count = ? WHERE userId = ? AND DATE(log.createdAt) = CURDATE();
+      `
+    const result = await connection.execute(statement, [count, userId]);
+    return result[0];
+  }
 }
 export default new UserService();

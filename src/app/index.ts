@@ -8,7 +8,7 @@ app.use(bodyParser());
 app.use(async (ctx, next) => {
   ctx.set("Access-Control-Allow-Origin","*");
   ctx.set("Access-Control-Allow-Headers","Content-Type,Authorization");
-  ctx.set("Access-Control-Allow-Methods","OPTIONS,GET,POST");
+  ctx.set("Access-Control-Allow-Methods","OPTIONS,GET,POST,DELETE");
   //对OPTIONS类型的请求，直接返回成功状态即可，
   //因为它只是用于验证是否支持跨域
   if(ctx.method=="OPTIONS"){

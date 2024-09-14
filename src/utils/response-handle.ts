@@ -66,7 +66,10 @@ const responseHandle = (type: string, ctx: Context, data: any) => {
       message = "动态图片上传成功~";
       break;
     case types.UPLOAD_BANNER_PICTURE_SUCCESS:
-      message = "轮播图上传成功~";
+      message = "轮播图更新成功~";
+      break;
+    case types.DELETE_BANNER_PICTURE_SUCCESS:
+      message = "轮播图删除成功~";
       break;
 
     // 标签
@@ -92,6 +95,17 @@ const responseHandle = (type: string, ctx: Context, data: any) => {
     case types.GET_AVATAR_INFO_SUCCESS:
       message = "获取头像信息成功~";
       break;
+
+    // 记录访问成功
+    case types.VISIT_LOG:
+      message = "记录用户访问成功~";
+      break;
+      
+    // 删除超过七天的访问记录
+    case types.DEL_VISIT_LOG:
+      message = "删除记录成功~";
+      break;
+
     default:
       status = 404;
       message = "not found~";

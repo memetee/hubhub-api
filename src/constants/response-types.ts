@@ -33,7 +33,10 @@ export const GET_LABEL_SUCCESS = "get_label_error";
 // 轮播图
 export const UPLOAD_BANNER_PICTURE_SUCCESS = "upload_banner_picture_success";
 export const GET_BANNER_LIST_SUCCESS = "get_banner_list_success";
+export const DELETE_BANNER_PICTURE_SUCCESS = "delete_banner_picture_success";
 
 // user
 export const GET_USER_MOMENT_LIST_SUCCESS = "get_user_moment_list_success";
 export const UPDATE_USER_INFO_SUCCESS = "update_user_info_success";
+export const VISIT_LOG = "visit_log";
+export const DEL_VISIT_LOG = "del_visit_log";

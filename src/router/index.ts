@@ -1,16 +1,27 @@
 import Koa from "koa";
 import fs from "fs";
 const useRoutes = (app: Koa) => {
-  fs.readdirSync(__dirname).forEach((file) => {
+  handleUseRouter(app, __dirname);
+};
+
+
+function handleUseRouter(app: Koa, patch: string) {
+  fs.readdirSync(patch).forEach((file) => {
+    const newPath = patch + '/' + file;
+    const stat = fs.statSync(newPath)
     if (file === "index.ts") return;
-    else {
-      import(`./${file}`).then((module) => {
+    else if (stat.isDirectory()){
+      handleUseRouter(app, newPath)
+    }else {
+      import(newPath).then((module) => {
         const router = module.default;
         app.use(router.routes());
         app.use(router.allowedMethods());
       });
     }
   });
-};
+}
+
+
 
 export default useRoutes;
