@@ -131,6 +131,17 @@ const errorHandle = (error: Error, ctx: RouterContext) => {
       message = "无权限~";
       break;
 
+    // admin
+    // 保存任务失败
+    case types.SAVE_TASK_ERROR:
+      message = "保存任务失败~";
+      break;
+
+    // 获取任务列表失败
+    case types.GET_TASK_LIST_ERROR:
+      message = "获取任务列表失败~";
+      break;
+
     default:
       status = 404;
       message = "not found~";

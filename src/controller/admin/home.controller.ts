@@ -1,6 +1,7 @@
 import { Context, Next } from "koa";
 import types from "../../constants/index";
 import homeInfoService from "../../service/admin_homeInfo.service";
+import taskInfoService from "../../service/admin_adminTask-menu.service";
 import { getLastDays } from "../../utils/utils";
 class AdminHomeInfo {
   async getHomeInfo(ctx: Context, next: Next) {
@@ -26,6 +27,7 @@ class AdminHomeInfo {
       const toDayUserCountResult = (await homeInfoService.getTodayUserCount()) as [any];
       result.addUserCount = toDayUserCountResult[0].addUserCount;
 
+      // 七天新增动态
       const date = getLastDays(7)
       let addDynamicNumberList = [];
       for(let i = 0; i < 7; i++) {
@@ -37,9 +39,14 @@ class AdminHomeInfo {
       }
       result.addDynamicList = addDynamicNumberList as any;
 
+      // 七天新增访问统计
       const resultPageView = await homeInfoService.getPageView() as [];
       result.pageViewInfo = resultPageView;
       ctx.app.emit("response", types.GET_BANNER_LIST_SUCCESS, ctx, result);
+
+      // 任务列表
+      const taskList = await taskInfoService.getTaskList() as any;
+      result.taskList = taskList;
     } catch (err) {
       let error = new Error(types.GET_BANNER_LIST_ERROR);
       ctx.app.emit("error", error, ctx);

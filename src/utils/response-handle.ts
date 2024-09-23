@@ -96,6 +96,7 @@ const responseHandle = (type: string, ctx: Context, data: any) => {
       message = "获取头像信息成功~";
       break;
 
+    // admin
     // 记录访问成功
     case types.VISIT_LOG:
       message = "记录用户访问成功~";
@@ -104,6 +105,16 @@ const responseHandle = (type: string, ctx: Context, data: any) => {
     // 删除超过七天的访问记录
     case types.DEL_VISIT_LOG:
       message = "删除记录成功~";
+      break;
+
+    // 保存任务成功
+    case types.SAVE_TASK_SUCCESS:
+      message = "保存任务成功~";
+      break;
+
+    // 获取任务列表成功
+    case types.GET_TASK_LIST_SUCCESS:
+      message = "获取任务列表成功~";
       break;
 
     default:

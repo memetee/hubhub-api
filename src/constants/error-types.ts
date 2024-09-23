@@ -53,3 +53,6 @@ export const UPDATE_USER_INFO_ERROR = "update_user_info_error";
 
 // admin
 export const GET_DYNAMIC_COUNT = 'get_dynamic_count';
+export const SAVE_TASK_ERROR = 'save_task_erros';
+export const GET_TASK_LIST_ERROR = 'get_task_list_erros';
+

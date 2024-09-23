@@ -40,3 +40,7 @@ export const GET_USER_MOMENT_LIST_SUCCESS = "get_user_moment_list_success";
 export const UPDATE_USER_INFO_SUCCESS = "update_user_info_success";
 export const VISIT_LOG = "visit_log";
 export const DEL_VISIT_LOG = "del_visit_log";
+
+
+export const SAVE_TASK_SUCCESS = 'save_task_success';
+export const GET_TASK_LIST_SUCCESS = 'get_task_list_success';
