@@ -8,6 +8,7 @@ import md5Password from "../utils/password-handle";
 import { APP_HOST, APP_PORT } from "../app/config";
 
 export const verifyUser = async (ctx: Context, next: Next) => {
+  console.log('进入用户校验');
   const { name, password } = ctx.request.body as user;
   // 判断密码/账号
   if (!name || !password) {

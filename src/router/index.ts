@@ -6,6 +6,7 @@ const useRoutes = (app: Koa) => {
 
 
 function handleUseRouter(app: Koa, patch: string) {
+  console.log('开始注册路由');
   fs.readdirSync(patch).forEach((file) => {
     const newPath = patch + '/' + file;
     const stat = fs.statSync(newPath)
