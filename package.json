@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node ./src/main.ts",
+    "dev": "NODE_ENV=development nodemon --exec ts-node ./src/main.ts",
+    "prod": " NODE_ENV=production nodemon --exec ts-node ./src/main.ts",
     "init-data-base": "nodemon --exec ts-node ./src/assets/js/initDataBase.ts"
   },
   "keywords": [],
@@ -19,7 +21,8 @@
     "koa-bodyparser": "^4.4.1",
     "koa-multer": "^1.0.2",
     "koa-router": "^12.0.1",
-    "mysql2": "^3.9.7"
+    "mysql2": "^3.9.7",
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.6",
