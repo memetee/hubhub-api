@@ -129,6 +129,10 @@ CREATE TABLE `label` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `label` (name) VALUES ('求助打听');
+INSERT INTO `label` (name) VALUES ('技术交流');
+INSERT INTO `label` (name) VALUES ('游戏交友');
+INSERT INTO `label` (name) VALUES ('吃瓜群众');
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

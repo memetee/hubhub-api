@@ -16,8 +16,6 @@ const PUBLIC_KEY = fs.readFileSync(
   path.resolve(__dirname, "./keys/public.key")
 );
 
-// 输入数据库密码
-let mySQLPassworld = readline.question('Please enter the MySQL password: ');
 const APP_PORT = process.env.APP_PORT;
 const APP_HOST = process.env.APP_HOST;
 const MYSQL_HOST = process.env.MYSQL_HOST;
@@ -27,7 +25,7 @@ const MYSQL_PORT = process.env.MYSQL_PORT
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE;
 const MYSQL_USER = process.env.MYSQL_USER;
 
-const MYSQL_PASSWORD = mySQLPassworld;
+const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
 export {
   APP_HOST,
   APP_PORT,

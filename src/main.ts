@@ -1,5 +1,5 @@
 import app from "./app";
-const { APP_PORT, APP_HOST } = require("./app/config");
+const { APP_PORT } = require("./app/config");
 require("./app/database");
 
 app.listen(APP_PORT, () => {
