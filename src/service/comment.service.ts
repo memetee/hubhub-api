@@ -1,4 +1,4 @@
-import { APP_HOST, APP_PORT } from "../app/config";
+import { BASE_URL } from "../app/config";
 import connections from "../app/database";
 class UserService {
   async create(id: string, content: string, momentId: string) {
@@ -45,7 +45,7 @@ class UserService {
       'commentId', c.commentId,
       'createTime', c.createdAt,
       'updateTime', c.updatedAt,
-      'author', JSON_OBJECT('id', u.id, 'name', u.name, 'avatarUrl', CONCAT('${APP_HOST}:${APP_PORT}/', u.avatarUrl)),
+      'author', JSON_OBJECT('id', u.id, 'name', u.name, 'avatarUrl', CONCAT('${BASE_URL}/', u.avatarUrl)),
       'reply', (
         SELECT JSON_ARRAYAGG(JSON_OBJECT(
           'id', cr.id,
@@ -59,7 +59,7 @@ class UserService {
         WHERE c.id = cr.commentId
         ),
       'images', IFNULL((
-        SELECT JSON_ARRAYAGG(CONCAT('${APP_HOST}:${APP_PORT}/image', file.filename))
+        SELECT JSON_ARRAYAGG(CONCAT('${BASE_URL}/image', file.filename))
         FROM file
         WHERE file.commentId = c.id), JSON_ARRAY()
         )

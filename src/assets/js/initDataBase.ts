@@ -1,9 +1,13 @@
 import mysql from "mysql2/promise";
 import * as fs from 'fs';
 import * as path from 'path';
-
-// 读取 SQL 文件
-const sqlFilePath = path.join(__dirname, '../sql/hubhub.sql');
+// 动态读取 SQL 文件
+let sqlFilePath = path.join(__dirname, '../sql/hubhub-dev.sql');
+if (process.env.NODE_ENV === 'uat') {
+  sqlFilePath = path.join(__dirname, '../sql/hubhub-uat.sql');
+} else if (process.env.NODE_ENV === 'prod') {
+  sqlFilePath = path.join(__dirname, '../sql/hubhub-prod.sql');
+}
 const sql = fs.readFileSync(sqlFilePath, 'utf8');
 
 import {

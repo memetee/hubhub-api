@@ -1,4 +1,4 @@
-import { APP_HOST, APP_PORT } from "../app/config";
+import { BASE_URL } from "../app/config";
 import connection from "../app/database";
 
 class AuthService {
@@ -12,7 +12,7 @@ class AuthService {
     SELECT
       u.id id,
       u.name name,
-      CONCAT('${APP_HOST}:${APP_PORT}/', u.avatarUrl) avatarUrl
+      CONCAT('${BASE_URL}/', u.avatarUrl) avatarUrl
     FROM user u WHERE id = ?;
     `;
     const result = await connection.execute(statement, [userId]);

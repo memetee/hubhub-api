@@ -1,4 +1,3 @@
-import { APP_HOST, APP_PORT } from "../app/config";
 import connection from "../app/database";
 class HomeInfoService {
   async getDynamicCount() {

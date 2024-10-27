@@ -1,4 +1,4 @@
-import { APP_HOST, APP_PORT } from "../app/config";
+import { BASE_URL } from "../app/config";
 import connection from "../app/database";
 class BannerService {
   async saveBannerPictureInfo(
@@ -47,7 +47,7 @@ class BannerService {
     const statement = `SELECT
     JSON_ARRAYAGG(JSON_OBJECT(
     'id', file.id,
-    'bannerUrl', CONCAT('${APP_HOST}:${APP_PORT}/image/',file.filename)
+    'bannerUrl', CONCAT('${BASE_URL}/image/',file.filename)
     )) list
     FROM file WHERE file.banner = 'banner';`;
     const result = await connection.execute(statement, [bannerType]);

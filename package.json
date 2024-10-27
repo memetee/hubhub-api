@@ -6,9 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node ./src/main.ts",
-    "dev": "NODE_ENV=development nodemon --exec ts-node ./src/main.ts",
-    "prod": " NODE_ENV=production nodemon --exec ts-node ./src/main.ts",
-    "init-data-base": "nodemon --exec ts-node ./src/assets/js/initDataBase.ts"
+    "dev": "NODE_ENV=dev nodemon --exec ts-node ./src/main.ts",
+    "uat": "NODE_ENV=uat nodemon --exec ts-node ./src/main.ts",
+    "prod": "NODE_ENV=prod nodemon --exec ts-node ./src/main.ts",
+    "init-dev": "NODE_ENV=dev nodemon --exec ts-node ./src/assets/js/initDataBase.ts",
+    "init-uat": "NODE_ENV=uat nodemon --exec ts-node ./src/assets/js/initDataBase.ts",
+    "init-prod": "NODE_ENV=prod nodemon --exec ts-node ./src/assets/js/initDataBase.ts"
   },
   "keywords": [],
   "author": "",

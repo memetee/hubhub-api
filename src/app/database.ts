@@ -1,4 +1,3 @@
-const config = require("./config");
 import {
   MYSQL_HOST,
   MYSQL_PORT,

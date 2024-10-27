@@ -5,7 +5,7 @@ import types from "../constants/index";
 import userService from "../service/user.service";
 import fileService from "../service/file.service";
 import md5Password from "../utils/password-handle";
-import { APP_HOST, APP_PORT } from "../app/config";
+import { BASE_URL } from "../app/config";
 
 export const verifyUser = async (ctx: Context, next: Next) => {
   const { name, password } = ctx.request.body as user;
@@ -64,7 +64,7 @@ export const uploadAvatar = async (ctx: Context, next: Next) => {
         id
       );
       // 将头像信息更新到user表中
-      const avatarUrl = `${APP_HOST}:${APP_PORT}/user/${id}/avatar`;
+      const avatarUrl = `${BASE_URL}/user/${id}/avatar`;
       await userService.updateUserAvatarUrl(avatarUrl, id);
       await next();
     } catch (err) {

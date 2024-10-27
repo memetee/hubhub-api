@@ -1,10 +1,14 @@
 import fs from "fs";
 import dotenv from "dotenv";
 import path from "path";
-const readline = require('readline-sync');
 
 // 动态选择加载的 .env 文件
-const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development';
+let envFile = '.env.dev';
+if (process.env.NODE_ENV === 'uat') {
+  envFile = '.env.uat'
+} else if (process.env.NODE_ENV === 'prod') {
+  envFile = '.env.prod'
+}
 
 // 使用 dotenv 加载相应的 .env 文件
 dotenv.config({ path: envFile });
@@ -19,11 +23,10 @@ const PUBLIC_KEY = fs.readFileSync(
 const APP_PORT = process.env.APP_PORT;
 const APP_HOST = process.env.APP_HOST;
 const MYSQL_HOST = process.env.MYSQL_HOST;
-const MYSQL_PORT = process.env.MYSQL_PORT
-  ? parseInt(process.env.MYSQL_PORT)
-  : undefined;
+const MYSQL_PORT = Number(process.env.MYSQL_PORT)
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE;
 const MYSQL_USER = process.env.MYSQL_USER;
+const BASE_URL = process.env.BASE_URL
 
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
 export {
@@ -36,4 +39,5 @@ export {
   MYSQL_PASSWORD,
   PRIVATE_KEY,
   PUBLIC_KEY,
+  BASE_URL
 };

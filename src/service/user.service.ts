@@ -1,7 +1,7 @@
 import { Context } from "koa";
 import { user } from "../types";
 import connection from "../app/database";
-import { APP_HOST, APP_PORT } from "../app/config";
+import { BASE_URL } from "../app/config";
 class UserService {
   async create(ctx: Context) {
     const user = ctx.request.body as user;
@@ -38,7 +38,7 @@ class UserService {
         m.content content,
         m.createdAt createTime,
         m.updatedAt updateTime,
-        JSON_OBJECT('id', u.id, 'name', u.name, 'avatarUrl', CONCAT('${APP_HOST}:${APP_PORT}/', u.avatarUrl)) author,
+        JSON_OBJECT('id', u.id, 'name', u.name, 'avatarUrl', CONCAT('${BASE_URL}/', u.avatarUrl)) author,
         (SELECT COUNT(*) FROM comment c WHERE c.momentId = m.id AND c.commentId IS NULL) commentCount,
         IFNULL(
           ( SELECT
@@ -48,7 +48,7 @@ class UserService {
             WHERE m.id = ml.momentId
           ), JSON_ARRAY()
         ) labels,
-        IFNULL((SELECT JSON_ARRAYAGG( CONCAT('${APP_HOST}:${APP_PORT}/image',file.filename)) FROM file WHERE file.momentId = m.id), JSON_ARRAY()) images
+        IFNULL((SELECT JSON_ARRAYAGG( CONCAT('${BASE_URL}/image',file.filename)) FROM file WHERE file.momentId = m.id), JSON_ARRAY()) images
       FROM moment m
       LEFT JOIN user u ON m.userId = u.id
       WHERE ? = m.userId
