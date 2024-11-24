@@ -1,6 +1,6 @@
 import Router from "koa-router";
 
-const momentRouter = new Router({ prefix: "/moment" });
+const momentRouter = new Router({ prefix: "/api/moment" });
 
 import { verifyAuth, verifyPermission } from "../../middleware/auth.middleware";
 import { verifyLabelExists } from "../../middleware/label.middleware";

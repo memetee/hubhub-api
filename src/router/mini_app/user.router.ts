@@ -11,7 +11,7 @@ import {
 import { verifyAuth } from "../../middleware/auth.middleware";
 import { avatarHandler } from "../../middleware/file.middleware";
 
-const userRouter = new Router({ prefix: "/user" });
+const userRouter = new Router({ prefix: "/api/user" });
 // 用户注册
 userRouter.post("/", verifyUser, handlePassword, create);
 

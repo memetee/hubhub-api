@@ -4,7 +4,7 @@ import { verifyAuth } from "../../middleware/auth.middleware";
 import bannerController from "../../controller/common/banner.controller";
 import { pictureHandler } from "../../middleware/file.middleware";
 const { saveBannerPictureInfo, list, updateBannerPicture, deleteBannerPicture } = bannerController;
-const bannerRouter = new Router({ prefix: "/banner" });
+const bannerRouter = new Router({ prefix: "/api/banner" });
 
 // 上传banner图片
 bannerRouter.post("/", verifyAuth, pictureHandler, saveBannerPictureInfo);

@@ -1,6 +1,6 @@
 import Router from "koa-router";
 import { verifyAuth, verifyPermission } from "../../middleware/auth.middleware";
-const commentRouter = new Router({ prefix: "/comment" });
+const commentRouter = new Router({ prefix: "/api/comment" });
 import comment from "../../controller/mini_app/comment.controller";
 const { list, create, reply, update, remove } = comment;
 // 创建评论

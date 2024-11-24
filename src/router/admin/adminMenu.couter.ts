@@ -2,7 +2,7 @@ import Router from "koa-router";
 import { verifyAuth } from "../../middleware/auth.middleware";
 import TaskInfo from "../../controller/admin/task.controller";
 const { createTask, getTaskList, updateTask } = TaskInfo;
-const adminMenu = new Router({ prefix: "/task" });
+const adminMenu = new Router({ prefix: "/api/task" });
 
 // 创建任务
 adminMenu.post("/create", verifyAuth, createTask);
