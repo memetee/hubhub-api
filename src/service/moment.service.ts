@@ -56,6 +56,11 @@ class UserService {
     const result = await connection.execute(statement, [offset, size]);
     return result;
   }
+  async momentCount() {
+    const statement = `SELECT COUNT(*) AS count FROM moment`;
+    const result = await connection.execute(statement);
+    return result;
+  }
   async hotList(offset: string, size: string) {
     const statement = `
       SELECT
@@ -81,6 +86,11 @@ class UserService {
       LIMIT 0, 10;
     `;
     const result = await connection.execute(statement, [offset, size]);
+    return result;
+  }
+  async momentHotCount() {
+    const statement = `SELECT COUNT(*) AS count FROM moment m WHERE (SELECT COUNT(*) FROM comment c WHERE c.momentId = m.id) > 0;`;
+    const result = await connection.execute(statement);
     return result;
   }
   async update(content: string, momentId: string) {

@@ -45,7 +45,7 @@ class Moment {
     try {
       result = (await momentService.detail(momentId)) as any;
       if (!result.length) {
-        throw new Error('未查询到详情信息')
+        throw new Error("未查询到详情信息");
       }
       ctx.app.emit("response", types.GET_MOMENT_SUCCESS, ctx, result[0]);
     } catch (err) {
@@ -61,20 +61,29 @@ class Moment {
     let result = [];
     try {
       result = (await momentService.list(offset, size)) as any;
-      ctx.app.emit("response", types.GET_MOMENT_LIST_SUCCESS, ctx, result[0]);
+      let momentCount = await momentService.momentCount();
+      ctx.app.emit("response", types.GET_MOMENT_LIST_SUCCESS, ctx, {
+        list: result[0],
+        count: (momentCount[0] as any)[0].count,
+      });
     } catch (err) {
       let error = new Error(types.GET_MOMENT_LIST_ERROR);
       ctx.app.emit("error", error, ctx);
       return;
     }
   }
+
   async hotList(ctx: Context, next: Next) {
     const offset = (ctx.query.offset || "0") as string;
     const size = (ctx.query.size || "10") as string;
     let result = [];
     try {
       result = (await momentService.hotList(offset, size)) as any;
-      ctx.app.emit("response", types.GET_MOMENT_LIST_SUCCESS, ctx, result[0]);
+      let momentCount = await momentService.momentHotCount();
+      ctx.app.emit("response", types.GET_MOMENT_LIST_SUCCESS, ctx, {
+        list: result[0],
+        count: (momentCount[0] as any)[0].count,
+      });
     } catch (err) {
       let error = new Error(types.GET_MOMENT_LIST_ERROR);
       ctx.app.emit("error", error, ctx);
